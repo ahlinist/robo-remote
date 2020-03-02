@@ -14,6 +14,5 @@ class RoboRemoteApplicationSpec extends Specification{
     def "test context loads"() {
         expect:
         context != null
-        context.containsBean("serverSocket")
     }
 }

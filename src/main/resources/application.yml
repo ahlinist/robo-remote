@@ -1,2 +1,2 @@
 socket:
-  port: ${PORT:8080}
+  port: ${PORT:6666}

@@ -1,35 +1,35 @@
+const connect = function() {
+    const socket = new SockJS('/gs-guide-websocket');
+    const stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        stompClient.subscribe('/topic/greetings');
+    });
+    return stompClient;
+}
+
+const stompClient = connect();
+
+const sendDirection = function(direction) {
+    stompClient.send("/app/hello", {}, JSON.stringify({'direction': direction}));
+}
+
 const init = function() {
     const forward = document.querySelector("div#forward");
     const left = document.querySelector("div#left");
     const right = document.querySelector("div#right");
     const back = document.querySelector("div#back");
     forward.onclick = function() {
-        send('FORWARD');
+        sendDirection('FORWARD');
     };
     left.onclick = function() {
-        send('LEFT');
+        sendDirection('LEFT');
     };
     right.onclick = function() {
-        send('RIGHT');
+        sendDirection('RIGHT');
     };
     back.onclick = function() {
-        send('BACK');
+        sendDirection('BACK');
     };
-}
-
-const send = function(direction) {
-    const data = {
-        direction: direction
-    };
-    const payload = {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-        method: 'POST'
-    };
-    fetch("/move", payload);
 }
 
 init();
