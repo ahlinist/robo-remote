@@ -1,2 +1,0 @@
-socket:
-  port: ${PORT:6666}
