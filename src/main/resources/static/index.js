@@ -1,14 +1,15 @@
-const connect = function() {
+const stompClient = function() {
     const socket = new SockJS('/ui');
     const stompClient = Stomp.over(socket);
     stompClient.connect({});
     return stompClient;
-}
-
-const stompClient = connect();
+}();
 
 const sendDirection = function(direction) {
-    stompClient.send("/direction", {}, JSON.stringify({'direction': direction}));
+    const uri = "/server/direction";
+    const headers = {};
+    const body = JSON.stringify({'direction': direction});
+    stompClient.send(uri, headers, body);
 }
 
 const init = function() {
@@ -28,6 +29,4 @@ const init = function() {
     back.onclick = function() {
         sendDirection('BACK');
     };
-}
-
-init();
+}();
