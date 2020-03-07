@@ -1,5 +1,5 @@
 const connect = function() {
-    const socket = new SockJS('/gs-guide-websocket');
+    const socket = new SockJS('/ui');
     const stompClient = Stomp.over(socket);
     stompClient.connect({});
     return stompClient;
