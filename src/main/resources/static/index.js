@@ -1,9 +1,7 @@
 const connect = function() {
     const socket = new SockJS('/gs-guide-websocket');
     const stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        stompClient.subscribe('/topic/greetings');
-    });
+    stompClient.connect({});
     return stompClient;
 }
 
