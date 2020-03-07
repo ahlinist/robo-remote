@@ -10,7 +10,7 @@ const connect = function() {
 const stompClient = connect();
 
 const sendDirection = function(direction) {
-    stompClient.send("/app/hello", {}, JSON.stringify({'direction': direction}));
+    stompClient.send("/direction", {}, JSON.stringify({'direction': direction}));
 }
 
 const init = function() {

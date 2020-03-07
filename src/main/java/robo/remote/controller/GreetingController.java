@@ -10,9 +10,9 @@ import robo.remote.dto.MotionDto;
 public class GreetingController {
 
     @SneakyThrows
-    @MessageMapping("/hello")
+    @MessageMapping("/direction")
     @SendTo("/topic/greetings")
-    public MotionDto greeting(MotionDto message) {
+    public MotionDto direction(MotionDto message) {
         System.out.println(message);
         return new MotionDto(message.getDirection());
     }
